@@ -1,0 +1,17 @@
+services:
+  py-debian:
+    build:
+      context: ./docker
+      args:
+        - "USER_NAME=${USER_NAME:?error}"
+        - "USER_PASSWORD=${USER_PASSWORD:?error}"
+        - "ROOT_PASSWORD=${ROOT_PASSWORD:?error}"
+    ports:
+    - "${SSH_PORT:?error}:22"
+    - "${HTTP_PORT:?error}:80"
+    - "${HTTPS_PORT:?error}:443"
+    - "${SOCKET_PORT:?error}:3000"
+    restart: unless-stopped
+    volumes:
+    - ./home:/home/${USER_NAME:?error}
+    - ./python:/opt/miniconda3

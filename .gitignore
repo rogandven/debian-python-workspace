@@ -1,0 +1,6 @@
+/home/*
+/python/*
+!/home/dummy
+!/python/dummy
+
+*.env
